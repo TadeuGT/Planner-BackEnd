@@ -1,25 +1,21 @@
-import fastify from "fastify";
-import { prisma } from './lib/prisma';
+import fastify from "fastify"
+import cors from '@fastify/cors'
+import { createTrip } from "./routes/create-trip"
+import { serializerCompiler, validatorCompiler } from "fastify-type-provider-zod"
+import { confirmTrip } from "./routes/confirm-trip"
 
 const app = fastify()
 
-app.get('/cadastrar', async () => {
-    await prisma.trip.create({
-        data: {
-            destination: 'Rio de Janeiro',
-            starts_at: new Date(),
-            ends_at: new Date(),
-        }
-    })
-
-    return "Registro cadastrado!"
+app.register(cors, {
+    origin: '*',
 })
 
-app.get('/listar', async () => {
-    const trips = await prisma.trip.findMany()
-    
-    return trips
-})
+// Fastify Type Provider Zod, o validador de input Zod integrado ao Fastify
+app.setValidatorCompiler(validatorCompiler);
+app.setSerializerCompiler(serializerCompiler);
+
+app.register(createTrip)
+app.register(confirmTrip)
 
 app.get('/teste', () => {
     return "Hello World"
