@@ -3,6 +3,7 @@ import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from 'zod'
 import { prisma } from "../lib/prisma";
 import { dayjs } from "../lib/dayjs";
+import { ClientError } from "../errors/client-error";
 
 
 export async function createActivity(app: FastifyInstance) {
@@ -25,15 +26,15 @@ export async function createActivity(app: FastifyInstance) {
         })
         
         if (!trip) {
-            throw new Error("Viagem não encontrada.")
+            throw new ClientError("Trip could not be found.")
         }
 
         if (dayjs(occurs_at).isBefore(trip.starts_at)) {
-            throw new Error("Data de atividade anterior à data de viagem!")
+            throw new ClientError("Activity date should be after trip start date.")
         }
 
         if (dayjs(occurs_at).isAfter(trip.ends_at)) {
-            throw new Error("Data de atividade posterior à data de viagem!")
+            throw new ClientError("Activity date should be before trip end date.")
         }
 
         const activity = await prisma.activity.create({
