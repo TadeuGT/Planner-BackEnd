@@ -16,11 +16,13 @@ export async function createInvite(app: FastifyInstance) {
                 tripId: z.string().uuid(),
             }),
             body: z.object({
+                name: z.string(),
                 email: z.string().email(),
             })
         }
     }, async (request) => {
         const { tripId } = request.params
+        const { name } = request.body
         const { email } = request.body
 
         const trip = await prisma.trip.findUnique({
@@ -33,6 +35,7 @@ export async function createInvite(app: FastifyInstance) {
 
         const participant = await prisma.participant.create({
             data: {
+                name,
                 email,
                 trip_id: tripId,
             }

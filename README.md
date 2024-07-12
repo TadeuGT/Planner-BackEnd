@@ -1,5 +1,5 @@
 # plann.er 
-#### API para planejador de viagens, desenvolvidos na NLW Journey em julho de 2024.
+#### API para planejador de viagens, desenvolvida na NLW Journey em julho de 2024.
 ---
 
 O projeto foi desenvolvido em NodeJS com Typescript. Este projeto é uma API completa com rotas para criar e atualizar viagens, criar convidados e criar links. 
