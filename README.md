@@ -8,6 +8,7 @@
 O projeto foi desenvolvido em NodeJS com Typescript. Este projeto é uma API completa com rotas para criar e atualizar viagens, criar convidados e criar links. 
 
 **Documentação da API** disponível em <https://nlw-journey.apidocumentation.com/reference>
+
 *CHANGE: Inviting someone to the trip now requires the field "name" in addition to "email"* 
 
 O frontEnd criado para esta API foi desenvolvido em React, utilizando Typescript, e está disponível em um repositório separado em <https://github.com/TadeuGT/Planner-FrontEnd>
