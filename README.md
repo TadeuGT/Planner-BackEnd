@@ -3,7 +3,7 @@
 ---
 ##### Branches:
 - main: *Desenvolvimento independente continuado*
-- nlw-orig: *Projeto original desenvolvido durante a NLW (faltando algumas rotas e opções)*
+- nlw-orig: *Projeto original desenvolvido durante a NLW (não foram implementadas todas as funções)*
 
 O projeto foi desenvolvido em NodeJS com Typescript. Este projeto é uma API completa com rotas para criar e atualizar viagens, criar convidados e criar links. 
 
